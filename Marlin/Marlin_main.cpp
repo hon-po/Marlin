@@ -1383,6 +1383,8 @@ void process_commands()
             }
           #endif //FWRETRACT
         prepare_move();
+        st_synchronize();
+        SERIAL_ECHOLNPGM("Z_move_comp");
         //ClearToSend();
       }
       break;
@@ -1414,6 +1416,7 @@ void process_commands()
         manage_inactivity();
         lcd_update();
       }
+      SERIAL_ECHOLNPGM("Z_move_comp");
       break;
       #ifdef FWRETRACT
       case 10: // G10 retract
@@ -1660,6 +1663,7 @@ void process_commands()
       feedmultiply = saved_feedmultiply;
       previous_millis_cmd = millis();
       endstops_hit_on_purpose();
+      SERIAL_ECHOLNPGM("Z_move_comp");
       break;
 
 #ifdef ENABLE_AUTO_BED_LEVELING
